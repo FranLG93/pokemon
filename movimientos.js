@@ -1,10 +1,8 @@
-    // Clase de Movimientos
-    class movimiento {
-
-        constructor(nombre, daño) {
-            this.nombre = nombre;
-            this.daño = daño;
-        }
+class Movimiento {
+    constructor(nombre, daño) {
+        this.nombre = nombre;
+        this.daño = daño;
     }
+}
 
-    module.exports = movimiento;
+module.exports = Movimiento; 
