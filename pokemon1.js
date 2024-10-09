@@ -1,32 +1,27 @@
 
-
-
-// Clase de Pokémon
 class Pokemon {
-    constructor(nombre, tipo, vidaactual, vidamaxima, ataque, defensa, movimiento) {
+    constructor(nombre, tipo, vidaactual, vidamaxima, ataque, defensa, movimientos) {
         this.nombre = nombre;
         this.tipo = tipo;
         this.vidaactual = vidaactual;
         this.vidamaxima = vidamaxima;
         this.ataque = ataque;
         this.defensa = defensa;
-        this.movimiento = movimiento;
+        this.movimientos = movimientos; 
     }
 
-    // Método Ataque
-    atacar(objetivo) {
-        const ataque = Math.floor(Math.random() * this.movimiento.length);
-        const daño = Math.max(0, this.ataque - objetivo.defensa);
-        objetivo.vidaactual = Math.max(0, objetivo.vidaactual - daño);
-        console.log(`${this.nombre} ataca a ${objetivo.nombre} y le hace ${daño} de daño.\n`);
-        if (objetivo.vidaactual === 0) {
-            console.log(`${objetivo.nombre} ha sido derrotado\n`);
+
+    atacar(defensor, movimientoElegido) {
+        const daño = Math.max(0, movimientoElegido.daño + this.ataque - defensor.defensa);
+        defensor.vidaactual = Math.max(0, defensor.vidaactual - daño);
+        console.log(`${this.nombre} usa ${movimientoElegido.nombre} y hace ${daño} de daño a ${defensor.nombre}.\n`);
+        if (defensor.vidaactual === 0) {
+            console.log(`${defensor.nombre} ha sido derrotado.\n`);
         } else {
-            console.log(`${objetivo.nombre} tiene ${objetivo.vidaactual}/${objetivo.vidamaxima} restantes.\n`);
+            console.log(`${defensor.nombre} tiene ${defensor.vidaactual}/${defensor.vidamaxima} restantes.\n`);
         }
     }
 
-    // Método Curar
     curar() {
         if (this.vidaactual < this.vidamaxima) {
             const curar = Math.floor(this.vidamaxima * 0.5);
@@ -41,7 +36,7 @@ class Pokemon {
         return this.vidaactual <= 0;
     }
 }
-
+    
 
 
 module.exports = Pokemon;
